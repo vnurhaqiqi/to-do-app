@@ -25,7 +25,7 @@ STATUS_CODE = {
 PAGE_DATA_LIMIT = 10
 DEFAULT_PAGE = 1
 
-JWT_KEY = random_word(16)
+JWT_KEY = "this-is-jwt-key"
 
 def encode_token(payload):
     return jwt.encode(payload, JWT_KEY, algorithm='HS256')
