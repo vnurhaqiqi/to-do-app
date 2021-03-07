@@ -213,3 +213,28 @@ class TodoList(Response):
             self.set_content("invalid credentials.")
             
             return self.get_response()
+        
+    def update_done_to_do(self, params, payload):
+        payload = decode_token(payload)
+        
+        if payload:
+            todo_id = Todo.query.get(params.get('id'))
+            
+            if todo_id:
+                todo_id.is_active = False
+                db.session.commit()
+                
+                self.set_status_code(200)
+                self.set_content("success.")
+                
+                return self.get_response()
+            else:
+                self.set_status_code(400)
+                self.set_content("to do not found.")
+                
+                return self.get_response()
+        else:
+            self.set_status_code(400)
+            self.set_content("invalid credentials.")
+            
+            return self.get_response()
