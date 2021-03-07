@@ -81,3 +81,14 @@ def delete_to_do():
         service = todo.delete_to_do_data(params=params, payload=token)
 
     return service
+
+
+@app.route(BASE_URL + 'done-to-do', methods=['PUT'])
+def done_to_do():
+    token = request.headers['token']
+    params = request.args
+    
+    if request.method == 'PUT':
+        service = todo.update_done_to_do(params=params, payload=token)
+
+    return service
